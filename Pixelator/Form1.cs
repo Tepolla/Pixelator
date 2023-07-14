@@ -12,6 +12,9 @@ namespace Pixelator
 
         }
 
+        // Upon button click, the file explorer will be opened, and if a valid file is selected,
+        // A new window containing the image and a slider will be opened while the current window,
+        // is hidden. If an invalid file is selected, an error will be displayed as a message box.
         private void button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();

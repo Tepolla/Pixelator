@@ -16,6 +16,7 @@ namespace Pixelator
         {
             InitializeComponent();
             pictureBox1.Image = Image.FromFile(address);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
         }
 
     }
