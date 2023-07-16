@@ -46,9 +46,12 @@
             // 
             trackBar1.Location = new Point(64, 388);
             trackBar1.Maximum = 100;
+            trackBar1.Minimum = 1;
             trackBar1.Name = "trackBar1";
             trackBar1.Size = new Size(640, 56);
             trackBar1.TabIndex = 1;
+            trackBar1.Value = 1;
+            trackBar1.ValueChanged += trackBar1_ValueChanged;
             // 
             // FullImagePixelation
             // 
