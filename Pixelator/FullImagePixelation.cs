@@ -76,8 +76,109 @@ namespace Pixelator
             }
             // _____________________________________________________
             */
+
+
+
+            int currentValue = trackBar1.Value;
+            if (currentValue != previousValue)
+            {
+
+
+
+
+
+                Bitmap bmp = new Bitmap(this.address);
+
+            // CONSIDER SWITCHING THE TYPE TO DOUBLE
+            double heightDivisor = (trackBar1.Value / 100.0) * bmp.Height;
+            double widthDivisor = (trackBar1.Value / 100.0) * bmp.Width;
+
+            int newHeight = (int)Math.Ceiling(bmp.Height / heightDivisor);
+            int newWidth = (int)Math.Ceiling(bmp.Width / widthDivisor);
+
+            Bitmap newBmp = new Bitmap(newWidth, newHeight); // Creates new bitmap based on updated resolution
+
+            int row = 0;
+            for(int y = 0; y < newHeight; y++)
+            {
+                int col = 0;
+                for(int x = 0; x < newWidth; x++)
+                {
+                    Color pixelColor = bmp.GetPixel(x, y);
+                    newBmp.SetPixel(col, row, pixelColor);
+                    col++;
+                }
+                row++;
+            }
+
+            pictureBox1.Image = newBmp;
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+
+
+
+
+
+
+            previousValue = currentValue;
+
+                bmp.Dispose();  // Dispose the old bitmap
+            }    
+
         }
 
 
     }
 }
+
+
+
+/*
+private int previousValue = 0;
+
+private void trackBar1_ValueChanged(object sender, EventArgs e)
+{
+    int currentValue = trackBar1.Value;
+    if (currentValue != previousValue)
+    {
+        Bitmap bmp;
+        try
+        {
+            bmp = new Bitmap(this.address);
+        }
+        catch
+        {
+            MessageBox.Show("Image file could not be opened.");
+            return;
+        }
+        
+        double heightDivisor = (trackBar1.Value / 100.0) * bmp.Height;
+        double widthDivisor = (trackBar1.Value / 100.0) * bmp.Width;
+
+        int newHeight = (int)Math.Ceiling(bmp.Height / heightDivisor);
+        int newWidth = (int)Math.Ceiling(bmp.Width / widthDivisor);
+
+        Bitmap newBmp = new Bitmap(newWidth, newHeight);
+
+        for (int y = 0; y < newHeight; y++)
+        {
+            for (int x = 0; x < newWidth; x++)
+            {
+                // Scale indices back to original bitmap dimensions.
+                int origX = x * bmp.Width / newWidth;
+                int origY = y * bmp.Height / newHeight;
+
+                Color pixelColor = bmp.GetPixel(origX, origY);
+                newBmp.SetPixel(x, y, pixelColor);
+            }
+        }
+
+        pictureBox1.Image = newBmp;
+        pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+
+        previousValue = currentValue;
+
+        bmp.Dispose();  // Dispose the old bitmap
+    }
+}
+
+ */
