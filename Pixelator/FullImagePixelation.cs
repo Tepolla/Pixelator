@@ -120,8 +120,6 @@ namespace Pixelator
 
 
             previousValue = currentValue;
-
-                bmp.Dispose();  // Dispose the old bitmap
             }    
 
         }
